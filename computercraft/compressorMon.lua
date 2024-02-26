@@ -1,31 +1,33 @@
+-- compressorMon.lua by TheCatMan2000
+-- configurable program to control PneumaticCraft Flux Compressors
+-- licensed under wtfpl
+
+--------------------------------------------------------------
+-- MAKE SURE YOUR COMPRESSOR IS SET TO RUN ON A HIGH SIGNAL --
+--------------------------------------------------------------
+
 -- configuration --
 -------------------
---what face is the compressor on compared to the
---computer?
+-- what face is the compressor on in relation to the computer?
 compressorFace = "bottom"
  
---how hot should i allow the compressor to get
---before shutting it off?
-maxTempC = 230 -- default is 200
+-- how hot is the compressor allowed to get?
+maxTempC = 200 -- default is 200
 -- 50c = 100% eff
 -- 125c = 75% eff
 -- 200c = 50% eff
  
---how much pressure is subtracted from the danger value
+-- how much pressure is subtracted from the danger value
+-- helps account for server lag, also keeps shit from 'sploding
 barHeadroom = 0.8 -- default is 0.8
  
 -- dangerous settings --
---careful changing these settings...
+-- here be dragons
 activeRecheck = 0.5
 shortDelay = 5
-longDelay = 45
- 
- 
--- compressor should be set to run on high signal
--- compressor should be set to run on high signal
--- compressor should be set to run on high signal
- 
--- don't fuck with anything beyond this point unless you know what you're doing
+longDelay = 15
+
+-- the actual code
 maxTempK = maxTempC + 273.15 -- temps are read in kelvin
 pneu = peripheral.wrap(compressorFace)
 while true do
